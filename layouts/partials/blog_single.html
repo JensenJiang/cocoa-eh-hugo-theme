@@ -13,8 +13,12 @@
                 <div class="title-container">
                     {{ partial "page-heading" . }}
                 </div>
+		{{ if .Description }}
+		    <div class="description">{{ .Description }}</div>
+		{{ end }}
                 <div class="meta">
-                    <div class="date" title="{{ .Date.Format .Site.Params.dateformfull }}">{{ .Date.Format .Site.Params.dateform }}</div>
+                    <div class="date" title="{{ .Date.Format .Site.Params.dateformfull }}">created on {{ .Date.Format .Site.Params.dateformfull }}</div>
+		    <div class="middot" title="{{ .Lastmod.Format .Site.Params.dateformfull }}">updated on {{ .Lastmod.Format .Site.Params.dateformfull }}</div>
                     {{ if not .Params.noauthor }}
                         {{ if .Params.author }}
                         <div class="author middot" title="{{ .Params.Author }}">{{ .Params.author }}</div>

@@ -1,0 +1,23 @@
+{{ partial "header.html" . }}
+<div class="main column">
+    <div class="container">
+        <div class="content">
+            <div class="posts">
+                <div class="page-heading">Posts about {{ .Title }}</div>
+  <ul>
+		    {{ $.Scratch.Set "curLetter" "" }}
+		    {{ range .Data.Pages.ByTitle }}
+		    	{{ $firstChar := substr .Title 0 1 | upper }}
+			{{ $curLetter := $.Scratch.Get "curLetter" }}
+			{{ if ne $firstChar $curLetter }}
+			    {{ $.Scratch.Set "curLetter" $firstChar }}
+			    <li class="groupby">{{ $firstChar }}</li>
+			{{ end }}
+			<span><a href={{ .RelPermalink }}>{{ .Title }}</a></span>
+		    {{ end }}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{{ partial "footer.html" . }}

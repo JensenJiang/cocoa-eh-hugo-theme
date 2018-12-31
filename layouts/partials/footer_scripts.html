@@ -62,9 +62,9 @@ fathom('trackPageview');
   };
 </script>
 
-{{ if .Site.Params.uselatex }}
+{{ if (and (.Site.Params.mathjax.enable) (.Params.mathjax)) }}
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });
 </script>
-<script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML"></script>
+<script async type="text/javascript" src={{ .Site.Params.mathjax.cdn }}></script>
 {{ end }}
